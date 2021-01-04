@@ -48,8 +48,6 @@ class MyRadioList
   @override
   int get hashCode => radios.hashCode;
 }
-
-
 class MyRadio
 {
   final int id;
