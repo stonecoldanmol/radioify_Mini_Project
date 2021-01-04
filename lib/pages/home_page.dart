@@ -100,10 +100,14 @@ List<MyRadio> radios;
                   .onInkDoubleTap(() {
 
               })
-                  .p16()
-                  .centered();
+                  .p16();
+
           },
-          ),
+          ).centered(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Icon(CupertinoIcons.stop_circle,color: Colors.white,size: 50.0,),
+          ).pOnly(bottom: context.percentHeight*12)
         ],
         fit: StackFit.expand,
       ),
