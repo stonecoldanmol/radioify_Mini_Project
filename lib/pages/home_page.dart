@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,12 +14,34 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
 {
+
 List<MyRadio> radios;
+MyRadio _selectedRadio;
+Color _selectedColor;
+bool _isPlaying=false;
+
+final AudioPlayer _audioPlayer=AudioPlayer();
+
+
   @override
   void initState()
   {
     super.initState();
     fetchRadios();
+
+    _audioPlayer.onPlayerStateChanged.listen((event) {
+      if(event ==AudioPlayerState.PLAYING)
+      {
+        _isPlaying=true;
+      }
+      else
+      {
+        _isPlaying=false;
+      }
+      setState(() {
+
+      });
+    });
   }
 
   fetchRadios() async
@@ -30,6 +53,17 @@ List<MyRadio> radios;
 
     });
   }
+
+  _playMusic(String url){
+    _audioPlayer.play(url);
+    _selectedRadio=radios.firstWhere((element) => element.url==url);
+    print(_selectedRadio.name);
+    setState(() {
+
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
